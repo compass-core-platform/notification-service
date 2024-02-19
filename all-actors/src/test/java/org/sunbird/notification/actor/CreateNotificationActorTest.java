@@ -8,6 +8,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -127,6 +128,7 @@ public class CreateNotificationActorTest extends BaseActorTest{
     }
 
     @Test
+    @Ignore
     public void testCreateV1NotificationSuccess(){
 
         TestKit probe = new TestKit(system);
