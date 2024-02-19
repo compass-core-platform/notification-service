@@ -72,8 +72,11 @@ public class FeedNotificationHandler implements INotificationHandler{
         logger.info("FeedNotificationHandler: sendV1Notification notification :: " +notification);
         Response response = new Response();
         if(MapUtils.isNotEmpty(notification)){
-            logger.info("FeedNotificationHandler: sendV1Notification userIDs :: " +notification.get(JsonKey.USER_ID));
-            notification.put(JsonKey.USER_ID,Arrays.asList((String)notification.get(JsonKey.USER_ID)));
+            logger.info("FeedNotificationHandler: sendV1Notification userIDs :: " + (List<String>) notification.get(JsonKey.USER_ID));
+//            notification.put(JsonKey.USER_ID,Arrays.asList((String)notification.get(JsonKey.USER_ID)));
+            List<String> userIds = (List<String>) notification.get(JsonKey.USER_ID);
+            logger.info("FeedNotificationHandler: sendV1Notification userIDs list :: " +userIds);
+            notification.put(JsonKey.USER_ID,userIds);
             List<NotificationFeed> oldFeedList = generateV1FeedListObj(notification);
             response = notificationService.createV1NotificationFeed(oldFeedList,reqContext);
             if(null != response){
