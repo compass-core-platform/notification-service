@@ -211,6 +211,7 @@ public class Email {
       MimeMessage message = new MimeMessage(session);
       addRecipient(message, Message.RecipientType.BCC, bccList);
       setMessageAttribute(message, fromEmail, subject, body);
+      logger.info("Email.java > sendEmail setMesageAttribute message : "+ message);
       sentStatus = sendEmail(session, message);
     } catch (Exception e) {
       sentStatus = false;
@@ -268,7 +269,7 @@ public class Email {
       transport.sendMessage(message, message.getAllRecipients());
         logger.info(message.getContent().toString());
     } catch (Exception e) {
-      logger.error("SendMail:sendMail: Exception occurred with message = " + e.getMessage(), e);
+      logger.error("Email.java > sendMail: Exception occurred with message = " + e.getMessage(), e);
       response = false;
     } finally {
       try {
