@@ -120,6 +120,8 @@ public class Email {
 
   private Transport getTransportClient(Session session) throws MessagingException {
       Transport transport = session.getTransport("smtp");
+      logger.info("Transport values are : "+ transport.toString());
+      logger.info("Transport values host, userName, Password"+ host +" > " + userName + " > " + password);
       transport.connect(host, userName, password);
       return transport;
   }
@@ -211,6 +213,7 @@ public class Email {
       MimeMessage message = new MimeMessage(session);
       addRecipient(message, Message.RecipientType.BCC, bccList);
       setMessageAttribute(message, fromEmail, subject, body);
+      logger.info("from email = "+ fromEmail);
       logger.info("Email.java > sendEmail setMesageAttribute message : "+ message);
       sentStatus = sendEmail(session, message);
     } catch (Exception e) {
